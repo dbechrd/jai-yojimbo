@@ -1,0 +1,76 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Tests (Debug)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "preLaunchTask": "build_tests",
+            "visualizerFile": "C:/dojo/jai/editor_support/msvc/jai.natvis",
+            "program": "${workspaceFolder}/tests/bin/yojimbo_tests.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/tests/bin",
+            "environment": [],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Test Soak (Debug)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "preLaunchTask": "build_test_soak",
+            "visualizerFile": "C:/dojo/jai/editor_support/msvc/jai.natvis",
+            "program": "${workspaceFolder}/tests/bin/yojimbo_test_soak.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/tests/bin",
+            "environment": [],
+            "console": "integratedTerminal"
+        }
+        ,
+        {
+            "name": "Test Server (Debug)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "preLaunchTask": "build_test_server",
+            "visualizerFile": "C:/dojo/jai/editor_support/msvc/jai.natvis",
+            "program": "${workspaceFolder}/tests/bin/yojimbo_test_server.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/tests/bin",
+            "environment": [],
+            "console": "integratedTerminal"
+        }
+        ,
+        {
+            "name": "Test Client (Debug)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "preLaunchTask": "build_test_client",
+            "visualizerFile": "C:/dojo/jai/editor_support/msvc/jai.natvis",
+            "program": "${workspaceFolder}/tests/bin/yojimbo_test_client.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/tests/bin",
+            "environment": [],
+            "console": "integratedTerminal"
+        }
+        ,
+        {
+            "name": "Test Loopback (Debug)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "preLaunchTask": "build_test_loopback",
+            "visualizerFile": "C:/dojo/jai/editor_support/msvc/jai.natvis",
+            "program": "${workspaceFolder}/tests/bin/yojimbo_test_loopback.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/tests/bin",
+            "environment": [],
+            "console": "integratedTerminal"
+        }
+    ]
+}

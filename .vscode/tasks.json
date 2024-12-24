@@ -1,0 +1,125 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build_tests",
+            "type": "cppbuild",  // Important! Speed
+            "command": "jai",
+            "args": [
+                "tests/yojimbo_tests.jai",
+                "-x64",
+                "-import_dir",
+                "C:/Users/User/Documents/Development/jai-modules",
+                "-output_path",
+                "bin",
+                "-exe",
+                "yojimbo_tests"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            }
+        },
+        {
+            "label": "build_test_soak",
+            "type": "cppbuild",  // Important! Speed
+            "command": "jai",
+            "args": [
+                "tests/yojimbo_test_soak.jai",
+                "-x64",
+                "-import_dir",
+                "C:/Users/User/Documents/Development/jai-modules",
+                "-output_path",
+                "bin",
+                "-exe",
+                "yojimbo_test_soak"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            }
+        }
+        ,
+        {
+            "label": "build_test_server",
+            "type": "cppbuild",  // Important! Speed
+            "command": "jai",
+            "args": [
+                "tests/yojimbo_test_server.jai",
+                "-x64",
+                "-import_dir",
+                "C:/Users/User/Documents/Development/jai-modules",
+                "-output_path",
+                "bin",
+                "-exe",
+                "yojimbo_test_server"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            }
+        }
+        ,
+        {
+            "label": "build_test_client",
+            "type": "cppbuild",  // Important! Speed
+            "command": "jai",
+            "args": [
+                "tests/yojimbo_test_client.jai",
+                "-x64",
+                "-import_dir",
+                "C:/Users/User/Documents/Development/jai-modules",
+                "-output_path",
+                "bin",
+                "-exe",
+                "yojimbo_test_client"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            }
+        }
+        ,
+        {
+            "label": "build_test_loopback",
+            "type": "cppbuild",  // Important! Speed
+            "command": "jai",
+            "args": [
+                "tests/yojimbo_test_loopback.jai",
+                "-x64",
+                "-import_dir",
+                "C:/Users/User/Documents/Development/jai-modules",
+                "-output_path",
+                "bin",
+                "-exe",
+                "yojimbo_test_loopback"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            }
+        }
+    ]
+}

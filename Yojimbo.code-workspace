@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"name": "Yojimbo",
+			"path": "."
+		},
+		{
+			"name": "jai",
+			"path": "../../../../../../dojo/jai"
+		},
+		{
+			"name": "jai-modules",
+			"path": ".."
+		}
+	]
+}
