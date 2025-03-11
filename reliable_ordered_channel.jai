@@ -127,7 +127,7 @@ channel_send_message :: (using channel: *ReliableOrderedChannel, message: *Messa
     assert(message.blockData.count <= config.maxBlockSize);
 
     measureStream: MeasureStream;
-    messageFactory[message.type].serialize(*measureStream, message);
+    messageFactory.serialize(*measureStream, message);
     sendQueueEntry.measuredBits = stream_get_bits_processed(*measureStream);
     counters[ChannelCounter.MessagesSent] += 1;
     sendMessageId += 1;
@@ -220,8 +220,7 @@ channel_get_messages_to_send :: (using channel: *ReliableOrderedChannel, message
     giveUpBits := 4 * 8;
     giveUpCounter := 0;
 
-    assert(messageFactory.count > 0);
-    messageTypeBits := bits_required(0, cast(u64) messageFactory.count-1);
+    messageTypeBits := bits_required(0, cast(u64) messageFactory.max_message_type);
 
     messageLimit := min(config.messageSendQueueSize, config.messageReceiveQueueSize);
     previousMessageId: u16 = 0;
@@ -553,8 +552,7 @@ channel_get_fragment_packet_data :: (using channel: *ReliableOrderedChannel, pac
     packetData.block.numFragments = cast(u16) numFragments;
     packetData.block.messageType = messageType;
 
-    assert(messageFactory.count > 0);
-    messageTypeBits := bits_required(0, cast(u64) messageFactory.count-1);
+    messageTypeBits := bits_required(0, cast(u64) messageFactory.max_message_type);
     fragmentBits := ConservativeFragmentHeaderBits + fragmentData.count * 8;
 
     if fragmentId == 0 {

@@ -1,0 +1,13 @@
+{
+    "local_modules": [
+        "modules",
+        "C:/Users/User/Documents/Development/jai-modules"
+    ],
+    "roots": [
+        "tests/yojimbo_tests_client.jai",
+        "tests/yojimbo_tests_loopback.jai",
+        "tests/yojimbo_tests_server.jai",
+        "tests/yojimbo_tests_soak.jai",
+        "tests/yojimbo_tests.jai"
+    ]
+}

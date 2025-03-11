@@ -114,8 +114,7 @@ channel_generate_packet_data :: (using channel: *UnreliableUnorderedChannel, pac
 
     giveUpBits := 4 * 8;
 
-    assert(messageFactory.count > 0);
-    messageTypeBits := bits_required(0, cast(u64) messageFactory.count - 1);
+    messageTypeBits := bits_required(0, cast(u64) messageFactory.max_message_type);
 
     usedBits := ConservativeMessageHeaderBits;
     numMessages := 0;
@@ -136,7 +135,7 @@ channel_generate_packet_data :: (using channel: *UnreliableUnorderedChannel, pac
         assert(message != null);
 
         measureStream: MeasureStream;
-        messageFactory[message.type].serialize(*measureStream, message);
+        messageFactory.serialize(*measureStream, message);
         serialize_message_block(*measureStream, message, config.maxBlockSize);
 
         messageBits := messageTypeBits + stream_get_bits_processed(*measureStream);

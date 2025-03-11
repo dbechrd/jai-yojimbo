@@ -133,8 +133,7 @@ serialize_messages :: (stream: *Stream, messageFactory: MessageFactory, messages
     }
 
     for 0..messages.count-1 {
-        assert(messageFactory.count > 0);
-        serialize_int(stream, *messageTypes[it], 0, cast(u16) messageFactory.count-1);
+        serialize_int(stream, *messageTypes[it], 0, messageFactory.max_message_type);
 
         if stream.isReading {
             messages.*[it] = message_acquire(message_factory_create_message(messageFactory, messageTypes[it]));
@@ -150,7 +149,7 @@ serialize_messages :: (stream: *Stream, messageFactory: MessageFactory, messages
 
         assert(messages.*[it] != null);
 
-        if !messageFactory[messageTypes[it]].serialize(stream, messages.*[it]) {
+        if !messageFactory.serialize(stream, messages.*[it]) {
             yojimbo_log(.ERROR, "error: failed to serialize message of type % (serialize_messages[ordered = %])\n", messageTypes[it], ordered);
             return false;
         }
@@ -202,9 +201,7 @@ serialize_block_fragment :: (stream: *Stream, messageFactory: MessageFactory, bl
 
     if block.fragmentId == 0 {
         // block message
-
-        assert(messageFactory.count > 0);
-        serialize_int(stream, *block.messageType, 0, cast(u16) messageFactory.count-1);
+        serialize_int(stream, *block.messageType, 0, messageFactory.max_message_type);
 
         if stream.isReading {
             block.message = message_acquire(message_factory_create_message(messageFactory, block.messageType));
@@ -212,7 +209,7 @@ serialize_block_fragment :: (stream: *Stream, messageFactory: MessageFactory, bl
 
         assert(block.message != null);
 
-        if !messageFactory[block.messageType].serialize(stream, block.message) {
+        if !messageFactory.serialize(stream, block.message) {
             yojimbo_log(.ERROR, "error: failed to serialize block message of type % (serialize_block_fragment)\n", block.messageType);
             return false;
         }
