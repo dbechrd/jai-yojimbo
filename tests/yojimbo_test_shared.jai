@@ -23,7 +23,6 @@ TestMessageType :: enum u16 {
     TEST_BLOCK_MESSAGE;
     TEST_SERIALIZE_FAIL_ON_READ_MESSAGE;
     TEST_EXHAUST_STREAM_ALLOCATOR_ON_READ_MESSAGE;
-    NUM_TEST_MESSAGE_TYPES;
 }
 using TestMessageType;
 
@@ -92,7 +91,7 @@ TestExhaustStreamAllocatorOnReadMessage :: struct {
 }
 
 TestMessageFactory :: MessageFactory.{
-    max_message_type = xx NUM_TEST_MESSAGE_TYPES,
+    max_message_type = #run enum_highest_value(TestMessageType),
     create = (messageType: u16) -> *Message {
         type := messageType.(TestMessageType);
         if type == {
@@ -117,12 +116,11 @@ TestMessageFactory :: MessageFactory.{
 
 SingleTestMessageType :: enum u16 {
     SINGLE_TEST_MESSAGE;
-    NUM_SINGLE_TEST_MESSAGE_TYPES;
 }
 using SingleTestMessageType;
 
 SingleTestMessageFactory :: MessageFactory.{
-    max_message_type = xx NUM_SINGLE_TEST_MESSAGE_TYPES,
+    max_message_type = #run enum_highest_value(SingleTestMessageType),
     create = (messageType: u16) -> *Message {
         type := messageType.(SingleTestMessageType);
         if type == {
@@ -141,12 +139,11 @@ SingleTestMessageFactory :: MessageFactory.{
 
 SingleBlockTestMessageType :: enum u16 {
     SINGLE_BLOCK_TEST_MESSAGE;
-    NUM_SINGLE_BLOCK_TEST_MESSAGE_TYPES;
 }
 using SingleBlockTestMessageType;
 
 SingleBlockTestMessageFactory :: MessageFactory.{
-    max_message_type = xx NUM_SINGLE_BLOCK_TEST_MESSAGE_TYPES,
+    max_message_type = #run enum_highest_value(SingleBlockTestMessageType),
     create = (messageType: u16) -> *Message {
         type := messageType.(SingleBlockTestMessageType);
         if type == {
