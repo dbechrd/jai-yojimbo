@@ -1,7 +1,7 @@
 {
     "local_modules": [
         "modules",
-        "C:/Users/User/Documents/Development/jai-modules"
+        "C:/dojo/jai-modules"
     ],
     "roots": [
         "tests/yojimbo_tests_client.jai",
