@@ -218,7 +218,7 @@ client_create_net_client :: (using client: *Client, _address: IPAddress) {
     netcodeConfig.callback_context              = cast(*void) client;
     netcodeConfig.state_change_callback         = client_state_change_callback;
     netcodeConfig.send_loopback_packet_callback = client_send_loopback_packet_callback;
-    netClient = netcode_client_create(addressString, *netcodeConfig, time);
+    netClient = netcode_client_create(addressString, netcodeConfig, time);
 
     if netClient != null {
         boundAddress.port = netcode_client_get_port(netClient);

@@ -55,11 +55,11 @@ channel_reset :: (using channel: *UnreliableUnorderedChannel) {
 }
 
 channel_can_send_message :: (using channel: *UnreliableUnorderedChannel) -> bool {
-    return !queue_full(*messageSendQueue);
+    return !queue_full(messageSendQueue);
 }
 
 channel_has_messages_to_send :: (using channel: *UnreliableUnorderedChannel) -> bool {
-    return !queue_empty(*messageSendQueue);
+    return !queue_empty(messageSendQueue);
 }
 
 channel_send_message :: (using channel: *UnreliableUnorderedChannel, message: *Message) {
@@ -89,7 +89,7 @@ channel_receive_message :: (using channel: *UnreliableUnorderedChannel) -> *Mess
         return null;
     }
 
-    if queue_empty(*messageReceiveQueue) {
+    if queue_empty(messageReceiveQueue) {
         return null;
     }
 
@@ -103,7 +103,7 @@ channel_advance_time :: (using channel: *UnreliableUnorderedChannel, _time: Apol
 }
 
 channel_generate_packet_data :: (using channel: *UnreliableUnorderedChannel, packetData: *ChannelPacketData, packetSequence: u16, availableBits: int) -> int {
-    if queue_empty(*messageSendQueue) {
+    if queue_empty(messageSendQueue) {
         return 0;
     }
 
@@ -121,7 +121,7 @@ channel_generate_packet_data :: (using channel: *UnreliableUnorderedChannel, pac
     messages := NewArray(config.maxMessagesPerPacket, *Message,, temp);
 
     while true {
-        if queue_empty(*messageSendQueue) {
+        if queue_empty(messageSendQueue) {
             break;
         }
         if budgetedBits - usedBits < giveUpBits {
@@ -181,7 +181,7 @@ channel_process_packet_data :: (using channel: *UnreliableUnorderedChannel, pack
     for message: packetData.message.messages {
         assert(message != null);
         message.id = packetSequence;
-        if !queue_full(*messageReceiveQueue) {
+        if !queue_full(messageReceiveQueue) {
             queue_push(*messageReceiveQueue, message_acquire(message));
         }
     }
