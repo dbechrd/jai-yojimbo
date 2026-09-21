@@ -65,6 +65,9 @@ yojimbo_shutdown :: () {
 
 #import "Basic";
 Math :: #import "Math";
+
+// Dependencies can be found here:
+// https://github.com/dbechrd/jai-modules
 #import "Assertive";
 #import "IPAddress";
 #import "Reliable";
